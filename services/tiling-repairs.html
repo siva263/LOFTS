@@ -87,9 +87,18 @@
             </dl>
           </div>
 
-          <div class="rounded-3xl border border-slate-200 bg-white p-3 shadow-soft">
+          <div class="rounded-3xl border-2 border-emerald-500 bg-white p-3 shadow-soft ring-2 ring-emerald-300/60 hover:ring-emerald-500/70">
             <div class="aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100">
-              <img alt="Tiling repairs" class="h-full w-full object-cover" loading="lazy" src="../assets/images/services/tiling-repairs.jpg" />
+              <div class="relative h-full w-full" id="tilingRepairsCarousel" aria-label="Tiling repairs gallery">
+                <img alt="Tiling repairs gallery image 1" class="absolute inset-0 h-full w-full object-cover" loading="lazy" src="../assets/images/tiles/12e16700-8614-5bfa-b11e-baa2236def71.jpg" />
+                <img alt="Tiling repairs gallery image 2" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/tiles/4fa19c34-b778-5ff3-967e-5dc15297d96f.jpg" />
+                <img alt="Tiling repairs gallery image 3" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/tiles/949b23ec-f599-5fdc-a86a-e7b7681036c8.jpg" />
+                <img alt="Tiling repairs gallery image 4" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/tiles/96ae2cde-6232-5dd5-b1a4-245431823545.jpg" />
+                <img alt="Tiling repairs gallery image 5" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/tiles/96ae2cde-6232-5dd5-b1a4-245431823545%20(1).jpg" />
+                <img alt="Tiling repairs gallery image 6" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/tiles/0b226c450798410ac541646c86ec31afd840e5beab817a5d84fa821e7db61981ec84c3b4a3f072a7a2e1899c9fb06c6e188636b207dc3b03190fa3fa99330f541261554e8b475a3031ed25f9588e310777a58251d.jpg" />
+                <img alt="Tiling repairs gallery image 7" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/tiles/0b226c450798410ac541646c86ec31afd840e5beab817a5d84fa821e7db61981ec84c3b4a3f072a7a2e1899c9fb06c6eab7966847cd50692f7a76506e58a9ff04c9be6fa4e43ae94901d2997fa3c3d606284f1815.jpg" />
+                <img alt="Tiling repairs gallery image 8" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/tiles/0b226c450798410ac541646c86ec31afd840e5beab817a5d84fa821e7db61981ec84c3b4a3f072a7a2e1899c9fb06c6ee08263f3d87a951de23416135a108ad891a91143dcab2d45b98ad37ed58956dd4dcd0105d.jpg" />
+              </div>
             </div>
             <p class="px-3 pb-3 pt-3 text-xs text-slate-600">Demo image (stock photo).</p>
           </div>
@@ -167,6 +176,34 @@
   <script>
     const year = document.getElementById('year');
     if (year) year.textContent = String(new Date().getFullYear());
+  </script>
+
+  <script>
+    (function () {
+      const carousel = document.getElementById('tilingRepairsCarousel');
+      if (!carousel) return;
+
+      const slides = Array.from(carousel.querySelectorAll('img'));
+      if (slides.length <= 1) return;
+
+      let index = 0;
+      slides.forEach((slide, i) => {
+        if (i === 0) {
+          slide.classList.remove('opacity-0');
+        } else {
+          slide.classList.add('opacity-0');
+        }
+      });
+
+      window.setInterval(() => {
+        const prev = slides[index];
+        index = (index + 1) % slides.length;
+        const next = slides[index];
+
+        prev.classList.add('opacity-0');
+        next.classList.remove('opacity-0');
+      }, 3500);
+    })();
   </script>
 </body>
 </html>

@@ -87,9 +87,14 @@
             </dl>
           </div>
 
-          <div class="rounded-3xl border border-slate-200 bg-white p-3 shadow-soft">
+          <div class="rounded-3xl border-2 border-emerald-500 bg-white p-3 shadow-soft ring-2 ring-emerald-300/60 hover:ring-emerald-500/70">
             <div class="aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100">
-              <img alt="Flat-pack assembly" class="h-full w-full object-cover" loading="lazy" src="../assets/images/services/flat-pack-assembly.jpg" />
+              <div class="relative h-full w-full" id="flatPackCarousel" aria-label="Flat-pack assembly gallery">
+                <img alt="Flat-pack assembly gallery image 1" class="absolute inset-0 h-full w-full object-cover" loading="lazy" src="../assets/images/flat/carpenter-creating-new-furniture.jpg" />
+                <img alt="Flat-pack assembly gallery image 2" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/flat/istockphoto-490077888-612x612.jpg" />
+                <img alt="Flat-pack assembly gallery image 3" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/flat/premium_photo-1677182396996-d3bb8329ab7b.jpeg" />
+                <img alt="Flat-pack assembly gallery image 4" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/flat/premium_photo-1744995489299-63637165ac0%20.jpeg" />
+              </div>
             </div>
             <p class="px-3 pb-3 pt-3 text-xs text-slate-600">Demo image (stock photo).</p>
           </div>
@@ -172,6 +177,39 @@
   <script>
     const year = document.getElementById('year');
     if (year) year.textContent = String(new Date().getFullYear());
+
+    const carousel = document.getElementById('flatPackCarousel');
+    if (carousel) {
+      const slides = Array.from(carousel.querySelectorAll('img'));
+      let index = 0;
+
+      const show = (nextIndex) => {
+        slides.forEach((slide, i) => {
+          if (i === nextIndex) {
+            slide.classList.remove('opacity-0');
+            slide.classList.add('opacity-100');
+          } else {
+            slide.classList.remove('opacity-100');
+            slide.classList.add('opacity-0');
+          }
+        });
+      };
+
+      slides.forEach((slide, i) => {
+        slide.classList.add('transition-opacity', 'duration-700');
+        if (i === 0) {
+          slide.classList.add('opacity-100');
+          slide.classList.remove('opacity-0');
+        } else {
+          slide.classList.add('opacity-0');
+        }
+      });
+
+      window.setInterval(() => {
+        index = (index + 1) % slides.length;
+        show(index);
+      }, 3500);
+    }
   </script>
 </body>
 </html>

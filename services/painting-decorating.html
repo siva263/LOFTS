@@ -87,9 +87,18 @@
             </dl>
           </div>
 
-          <div class="rounded-3xl border border-slate-200 bg-white p-3 shadow-soft">
+          <div class="rounded-3xl border-2 border-emerald-500 bg-white p-3 shadow-soft ring-2 ring-emerald-300/60 hover:ring-emerald-500/70">
             <div class="aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100">
-              <img alt="Painting and decorating" class="h-full w-full object-cover" loading="lazy" src="../assets/images/services/painting-decorating.jpg" />
+              <div class="relative h-full w-full" id="paintingDecoratingCarousel" aria-label="Painting and decorating gallery">
+                <img alt="Painting and decorating gallery image 1" class="absolute inset-0 h-full w-full object-cover" loading="lazy" src="../assets/images/painting/how-to-paint-walls.jpg" />
+                <img alt="Painting and decorating gallery image 2" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/painting/0491a757-daa7-51e8-b41d-64ba810f73b9.jpg" />
+                <img alt="Painting and decorating gallery image 3" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/painting/28cf4f48-8d4f-5c53-a6e8-25650ff45b83.jpg" />
+                <img alt="Painting and decorating gallery image 4" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/painting/2be9cd3a-c461-5682-9203-6b0986ee40ed.jpg" />
+                <img alt="Painting and decorating gallery image 5" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/painting/4c9d8a71-e98d-5ec5-8508-27d7f1d5fac1.jpg" />
+                <img alt="Painting and decorating gallery image 6" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/painting/59da9bf0-084d-52cd-9eb8-b3d7ebc13854.jpg" />
+                <img alt="Painting and decorating gallery image 7" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/painting/6dd7c7f0-1e50-58a9-b2bc-3f04ab959f34.jpg" />
+                <img alt="Painting and decorating gallery image 8" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/painting/fdcd1fb3-5c63-5b03-b10a-3eb7244c6984.jpg" />
+              </div>
             </div>
             <p class="px-3 pb-3 pt-3 text-xs text-slate-600">Demo image (stock photo).</p>
           </div>
@@ -167,6 +176,34 @@
   <script>
     const year = document.getElementById('year');
     if (year) year.textContent = String(new Date().getFullYear());
+  </script>
+
+  <script>
+    (function () {
+      const carousel = document.getElementById('paintingDecoratingCarousel');
+      if (!carousel) return;
+
+      const slides = Array.from(carousel.querySelectorAll('img'));
+      if (slides.length <= 1) return;
+
+      let index = 0;
+      slides.forEach((slide, i) => {
+        if (i === 0) {
+          slide.classList.remove('opacity-0');
+        } else {
+          slide.classList.add('opacity-0');
+        }
+      });
+
+      window.setInterval(() => {
+        const prev = slides[index];
+        index = (index + 1) % slides.length;
+        const next = slides[index];
+
+        prev.classList.add('opacity-0');
+        next.classList.remove('opacity-0');
+      }, 3500);
+    })();
   </script>
 </body>
 </html>

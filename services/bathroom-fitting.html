@@ -87,9 +87,17 @@
             </dl>
           </div>
 
-          <div class="rounded-3xl border border-slate-200 bg-white p-3 shadow-soft">
+          <div class="rounded-3xl border-2 border-emerald-500 bg-white p-3 shadow-soft ring-2 ring-emerald-300/60 hover:ring-emerald-500/70">
             <div class="aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100">
-              <img alt="Bathroom fitting" class="h-full w-full object-cover" loading="lazy" src="../assets/images/services/bathroom-fitting.jpg" />
+              <div class="relative h-full w-full" id="bathroomFittingCarousel" aria-label="Bathroom fitting gallery">
+                <img alt="Bathroom fitting gallery image 1" class="absolute inset-0 h-full w-full object-cover" loading="lazy" src="../assets/images/bath/professional-handyman-working-in-shower-booth-indoors-photo.jpg" />
+                <img alt="Bathroom fitting gallery image 2" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/bath/31b07fc0-8f88-54c7-8a8e-6f843aa8868e.jpg" />
+                <img alt="Bathroom fitting gallery image 3" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/bath/659929ee-ed47-5e8b-bcfe-d347cba4977d.jpg" />
+                <img alt="Bathroom fitting gallery image 4" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/bath/a5ba25bd-a056-5349-8481-97adf23c61e4.jpg" />
+                <img alt="Bathroom fitting gallery image 5" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/bath/0b226c450798410ac541646c86ec31afd840e5beab817a5d84fa821e7db61981ec84c3b4a3f072a7a2e1899c9fb06c6e5d67213add187da5ac13a33eef390bc97b62ffba788c0558d06c5396a1f6499d65cf8c.jpg" />
+                <img alt="Bathroom fitting gallery image 6" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/bath/0b226c450798410ac541646c86ec31afd840e5beab817a5d84fa821e7db61981ec84c3b4a3f072a7a2e1899c9fb06c6ec32ee3930cf58546ca5198e5c8e21b9089565b5e52ce3232eeab1a7779c8ef9c90aaf0.jpg" />
+                <img alt="Bathroom fitting gallery image 7" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/bath/0b226c450798410ac541646c86ec31afd840e5beab817a5d84fa821e7db61981ec84c3b4a3f072a7a2e1899c9fb06c6ef1d69cb6f01b5628e5c62be89cc5e55ed8ef3953c336cc8aac154f255df741.jpg" />
+              </div>
             </div>
             <p class="px-3 pb-3 pt-3 text-xs text-slate-600">Demo image (stock photo).</p>
           </div>
@@ -167,6 +175,34 @@
   <script>
     const year = document.getElementById('year');
     if (year) year.textContent = String(new Date().getFullYear());
+  </script>
+
+  <script>
+    (function () {
+      const carousel = document.getElementById('bathroomFittingCarousel');
+      if (!carousel) return;
+
+      const slides = Array.from(carousel.querySelectorAll('img'));
+      if (slides.length <= 1) return;
+
+      let index = 0;
+      slides.forEach((slide, i) => {
+        if (i === 0) {
+          slide.classList.remove('opacity-0');
+        } else {
+          slide.classList.add('opacity-0');
+        }
+      });
+
+      window.setInterval(() => {
+        const prev = slides[index];
+        index = (index + 1) % slides.length;
+        const next = slides[index];
+
+        prev.classList.add('opacity-0');
+        next.classList.remove('opacity-0');
+      }, 3500);
+    })();
   </script>
 </body>
 </html>

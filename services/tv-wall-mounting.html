@@ -87,9 +87,17 @@
             </dl>
           </div>
 
-          <div class="rounded-3xl border border-slate-200 bg-white p-3 shadow-soft">
+          <div class="rounded-3xl border-2 border-emerald-500 bg-white p-3 shadow-soft ring-2 ring-emerald-300/60 hover:ring-emerald-500/70">
             <div class="aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100">
-              <img alt="TV wall mounting" class="h-full w-full object-cover" loading="lazy" src="../assets/images/services/tv-wall-mounting.jpg" />
+              <div class="relative h-full w-full" id="tvWallMountingCarousel" aria-label="TV wall mounting gallery">
+                <img alt="TV wall mounting gallery image 1" class="absolute inset-0 h-full w-full object-cover" loading="lazy" src="../assets/images/tv/447a7683-b4a5-54eb-bd41-85c9eedef0f9.jpg" />
+                <img alt="TV wall mounting gallery image 2" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/tv/74de4c51-3aeb-5e4c-ba13-0e98ba65cc36.jpg" />
+                <img alt="TV wall mounting gallery image 3" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/tv/9012a74e-4fbd-58c3-8b6d-e69b920be573.jpg" />
+                <img alt="TV wall mounting gallery image 4" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/tv/74de4c51-3aeb-5e4c-ba13-0e98ba65cc36%20(1).jpg" />
+                <img alt="TV wall mounting gallery image 5" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/tv/aec8f940-3469-5597-816f-0dd903b3407c.jpg" />
+                <img alt="TV wall mounting gallery image 6" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/tv/f36a0204-8fa2-58ec-8723-4ee56362d5d3.jpg" />
+                <img alt="TV wall mounting gallery image 7" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/tv/7682abbb-d62e-5e7d-88af-bf07979abccb.jpg" />
+              </div>
             </div>
             <p class="px-3 pb-3 pt-3 text-xs text-slate-600">Demo image (stock photo).</p>
           </div>
@@ -171,6 +179,34 @@
   <script>
     const year = document.getElementById('year');
     if (year) year.textContent = String(new Date().getFullYear());
+  </script>
+
+  <script>
+    (function () {
+      const carousel = document.getElementById('tvWallMountingCarousel');
+      if (!carousel) return;
+
+      const slides = Array.from(carousel.querySelectorAll('img'));
+      if (slides.length <= 1) return;
+
+      let index = 0;
+      slides.forEach((slide, i) => {
+        if (i === 0) {
+          slide.classList.remove('opacity-0');
+        } else {
+          slide.classList.add('opacity-0');
+        }
+      });
+
+      window.setInterval(() => {
+        const prev = slides[index];
+        index = (index + 1) % slides.length;
+        const next = slides[index];
+
+        prev.classList.add('opacity-0');
+        next.classList.remove('opacity-0');
+      }, 3500);
+    })();
   </script>
 </body>
 </html>

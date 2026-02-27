@@ -87,9 +87,19 @@
             </dl>
           </div>
 
-          <div class="rounded-3xl border border-slate-200 bg-white p-3 shadow-soft">
+          <div class="rounded-3xl border-2 border-emerald-500 bg-white p-3 shadow-soft ring-2 ring-emerald-300/60 hover:ring-emerald-500/70">
             <div class="aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100">
-              <img alt="Kitchen repairs" class="h-full w-full object-cover" loading="lazy" src="../assets/images/services/kitchen-repairs.jpg" />
+              <div class="relative h-full w-full" id="kitchenRepairsCarousel" aria-label="Kitchen repairs gallery">
+                <img alt="Kitchen repairs gallery image 1" class="absolute inset-0 h-full w-full object-cover" loading="lazy" src="../assets/images/kitchen/homeguide-repair-tech-fixing-a-kitchen-cabinet.jpeg" />
+                <img alt="Kitchen repairs gallery image 2" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/kitchen/6b8592ff-ef1c-54ff-9b22-91653d0dccdf.jpg" />
+                <img alt="Kitchen repairs gallery image 3" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/kitchen/8f9b65b3-b6d5-5216-9873-75d686386a33.jpg" />
+                <img alt="Kitchen repairs gallery image 4" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/kitchen/d9369de4-01cb-52fc-8cb3-56de5ce8705b.jpg" />
+                <img alt="Kitchen repairs gallery image 5" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/kitchen/0b226c450798410ac541646c86ec31afd840e5beab817a5d84fa821e7db61981ec84c3b4a3f072a7a2e1899c9fb06c6e08f0774391c6aa2d9541297c4b85827b71d0a72f248d6bfd03870fb4570f80d9ab500a4.jpg" />
+                <img alt="Kitchen repairs gallery image 6" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/kitchen/0b226c450798410ac541646c86ec31afd840e5beab817a5d84fa821e7db61981ec84c3b4a3f072a7a2e1899c9fb06c6e240ff7b341a76f7837301a812fe17de3541b4b0fb95fe066a7078fbd711172ef556ca06.jpg" />
+                <img alt="Kitchen repairs gallery image 7" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/kitchen/0b226c450798410ac541646c86ec31afd840e5beab817a5d84fa821e7db61981ec84c3b4a3f072a7a2e1899c9fb06c6e33db6abf5837eea82351b75d5fe6b17bbce7dfdd0b9a345b58852809caf6b4fff39d092.jpg" />
+                <img alt="Kitchen repairs gallery image 8" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/kitchen/0b226c450798410ac541646c86ec31afd840e5beab817a5d84fa821e7db61981ec84c3b4a3f072a7a2e1899c9fb06c6e4381e89c36a76dd486ebda12fd3825e75499af41cb440a01467146f31e436f01c5d5be2.jpg" />
+                <img alt="Kitchen repairs gallery image 9" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/kitchen/0b226c450798410ac541646c86ec31afd840e5beab817a5d84fa821e7db61981ec84c3b4a3f072a7a2e1899c9fb06c6e5f7abb164c493bac6175227f497e0cab921ef5dedf8ff278152202eff1335bad784db7.jpg" />
+              </div>
             </div>
             <p class="px-3 pb-3 pt-3 text-xs text-slate-600">Demo image (stock photo).</p>
           </div>
@@ -167,6 +177,34 @@
   <script>
     const year = document.getElementById('year');
     if (year) year.textContent = String(new Date().getFullYear());
+  </script>
+
+  <script>
+    (function () {
+      const carousel = document.getElementById('kitchenRepairsCarousel');
+      if (!carousel) return;
+
+      const slides = Array.from(carousel.querySelectorAll('img'));
+      if (slides.length <= 1) return;
+
+      let index = 0;
+      slides.forEach((slide, i) => {
+        if (i === 0) {
+          slide.classList.remove('opacity-0');
+        } else {
+          slide.classList.add('opacity-0');
+        }
+      });
+
+      window.setInterval(() => {
+        const prev = slides[index];
+        index = (index + 1) % slides.length;
+        const next = slides[index];
+
+        prev.classList.add('opacity-0');
+        next.classList.remove('opacity-0');
+      }, 3500);
+    })();
   </script>
 </body>
 </html>

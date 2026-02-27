@@ -87,9 +87,14 @@
             </dl>
           </div>
 
-          <div class="rounded-3xl border border-slate-200 bg-white p-3 shadow-soft">
+          <div class="rounded-3xl border-2 border-emerald-500 bg-white p-3 shadow-soft ring-2 ring-emerald-300/60 hover:ring-emerald-500/70">
             <div class="aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-100">
-              <img alt="General home maintenance" class="h-full w-full object-cover" loading="lazy" src="../assets/images/services/general-maintenance.jpg" />
+              <div class="relative h-full w-full" id="generalMaintenanceCarousel" aria-label="General home maintenance gallery">
+                <img alt="General home maintenance gallery image 1" class="absolute inset-0 h-full w-full object-cover" loading="lazy" src="../assets/images/home-maintenance/pexels-clickerhappy-1388944.jpg" />
+                <img alt="General home maintenance gallery image 2" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/home-maintenance/pexels-cottonbro-4482033.jpg" />
+                <img alt="General home maintenance gallery image 3" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/home-maintenance/pexels-energepic-com-27411-175039.jpg" />
+                <img alt="General home maintenance gallery image 4" class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700" loading="lazy" src="../assets/images/home-maintenance/photo-1618832515490-e181c4794a45.JPEG" />
+              </div>
             </div>
             <p class="px-3 pb-3 pt-3 text-xs text-slate-600">Demo image (stock photo).</p>
           </div>
@@ -195,6 +200,34 @@
   <script>
     const year = document.getElementById('year');
     if (year) year.textContent = String(new Date().getFullYear());
+  </script>
+
+  <script>
+    (function () {
+      const carousel = document.getElementById('generalMaintenanceCarousel');
+      if (!carousel) return;
+
+      const slides = Array.from(carousel.querySelectorAll('img'));
+      if (slides.length <= 1) return;
+
+      let index = 0;
+      slides.forEach((slide, i) => {
+        if (i === 0) {
+          slide.classList.remove('opacity-0');
+        } else {
+          slide.classList.add('opacity-0');
+        }
+      });
+
+      window.setInterval(() => {
+        const prev = slides[index];
+        index = (index + 1) % slides.length;
+        const next = slides[index];
+
+        prev.classList.add('opacity-0');
+        next.classList.remove('opacity-0');
+      }, 3500);
+    })();
   </script>
 </body>
 </html>
